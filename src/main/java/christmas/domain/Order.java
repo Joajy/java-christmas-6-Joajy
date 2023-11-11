@@ -2,6 +2,8 @@ package christmas.domain;
 
 import christmas.domain.menu.*;
 
+import static christmas.util.InputConstant.*;
+
 public class Order {
 
     private final String menuName;
@@ -9,16 +11,23 @@ public class Order {
     private final int orderAmount;
 
     public Order(String menuName, int orderAmount) {
-        this.category = initCategory(menuName);
         this.menuName = menuName;
+        this.category = validateCategory(menuName);
         this.orderAmount = orderAmount;
+        validateOrderAmount(orderAmount);
     }
 
     public Menu getCategory(){
         return category;
     }
 
-    public Menu initCategory(String menuName) {
+    public void validateOrderAmount(int orderAmount){
+        if (orderAmount > 20 || orderAmount < 1) {
+            throw new IllegalArgumentException(INVALID_ORDER);
+        }
+    }
+
+    public Menu validateCategory(String menuName) {
         if (MenuList.DESSERT.contains(menuName)) {
             return Dessert.valueOf(menuName);
         }
@@ -31,7 +40,7 @@ public class Order {
         if (MenuList.BEVERAGE.contains(menuName)) {
             return Beverage.valueOf(menuName);
         }
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException(INVALID_ORDER);
     }
 
     public String getMenuName(){
