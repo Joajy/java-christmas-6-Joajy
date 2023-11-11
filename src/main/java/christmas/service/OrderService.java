@@ -11,7 +11,7 @@ import christmas.util.InputConstant;
 import java.util.ArrayList;
 import java.util.List;
 
-import static christmas.validator.OrderValidator.validateOrderStatus;
+import static christmas.validator.OrdersValidator.validateOrdersStatus;
 import static christmas.view.InputView.*;
 import static christmas.view.OutputView.*;
 
@@ -38,7 +38,7 @@ public class OrderService {
         try {
             String[] order = orderMenuWithAmount();
             orders = separateOrders(order);
-            validateOrderStatus(orders);
+            validateOrdersStatus(orders);
         } catch (IllegalArgumentException e) {
             System.out.println(InputConstant.INVALID_ORDER);
             allOfOrderStatus();

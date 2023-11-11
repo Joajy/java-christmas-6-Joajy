@@ -6,18 +6,18 @@ import christmas.domain.menu.MenuList;
 import java.util.HashSet;
 import java.util.List;
 
-public class OrderValidator {
+public class OrdersValidator {
 
     private static final int MAX_MENU_COUNT = 20;
     private static final int MIN_MENU_COUNT = 1;
 
-    public static void validateOrderStatus(List<Order> orders) {
-        validateOrderCount(orders);
-        validateOrderOnlyBeverage(orders);
-        validateDuplicateOrder(orders);
+    public static void validateOrdersStatus(List<Order> orders) {
+        validateOrdersCount(orders);
+        validateOrdersOnlyBeverage(orders);
+        validateDuplicateOrders(orders);
     }
 
-    public static void validateDuplicateOrder(List<Order> orders) {
+    public static void validateDuplicateOrders(List<Order> orders) {
         HashSet<String> menuName = new HashSet<>();
         for (Order order : orders) {
             menuName.add(order.getMenuName());
@@ -27,7 +27,7 @@ public class OrderValidator {
         }
     }
 
-    public static void validateOrderOnlyBeverage(List<Order> orders) {
+    public static void validateOrdersOnlyBeverage(List<Order> orders) {
         int orderBeverage = 0;
         for (Order order : orders) {
             orderBeverage += validateOrderIsBeverage(order);
@@ -44,7 +44,7 @@ public class OrderValidator {
         return 0;
     }
 
-    public static void validateOrderCount(List<Order> orders) {
+    public static void validateOrdersCount(List<Order> orders) {
         int orderCount = 0;
         for (Order order : orders) {
             orderCount += order.getOrderAmount();

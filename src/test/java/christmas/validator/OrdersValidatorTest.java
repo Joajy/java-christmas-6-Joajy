@@ -7,10 +7,10 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static christmas.validator.OrderValidator.*;
+import static christmas.validator.OrdersValidator.*;
 import static org.assertj.core.api.Assertions.*;
 
-public class OrderValidatorTest {
+public class OrdersValidatorTest {
 
     @Test
     @DisplayName("음료만 주문하는 경우는 주문을 받지 않는다")
@@ -25,7 +25,7 @@ public class OrderValidatorTest {
         orders.add(redWine);
 
         //then
-        assertThatThrownBy(() -> validateOrderOnlyBeverage(orders))
+        assertThatThrownBy(() -> validateOrdersOnlyBeverage(orders))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -42,7 +42,7 @@ public class OrderValidatorTest {
         orders.add(order2);
 
         //then
-        assertThatThrownBy(() -> validateDuplicateOrder(orders))
+        assertThatThrownBy(() -> validateDuplicateOrders(orders))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -59,7 +59,7 @@ public class OrderValidatorTest {
         orders.add(order2);
 
         //then
-        assertThatThrownBy(() -> validateOrderCount(orders))
+        assertThatThrownBy(() -> validateOrdersCount(orders))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
