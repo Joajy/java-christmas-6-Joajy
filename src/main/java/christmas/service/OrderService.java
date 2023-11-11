@@ -46,7 +46,7 @@ public class OrderService {
     }
 
     public static void organizeTotalEvent(List<Order> orders, int money) {
-        printBaseStatus(orders);
+        printBaseStatus(orders, money);
         printBenefits(benefits(orders), money);
     }
 

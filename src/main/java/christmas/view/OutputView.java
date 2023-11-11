@@ -1,7 +1,6 @@
 package christmas.view;
 
 import christmas.domain.Order;
-import christmas.service.OrderService;
 
 import java.text.DecimalFormat;
 import java.util.List;
@@ -15,9 +14,9 @@ public class OutputView {
         return df.format(money);
     }
 
-    public static void printBaseStatus(List<Order> orders) {
+    public static void printBaseStatus(List<Order> orders, int money) {
         printMenu(orders);
-        printBeforeDiscount(orders);
+        printBeforeDiscount(money);
     }
 
     public static void printBenefits(List<Integer> benefits, int money){
@@ -77,9 +76,8 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printBeforeDiscount(List<Order> orders) {
+    public static void printBeforeDiscount(int money) {
         System.out.println(BEFORE_DISCOUNT);
-        int money = OrderService.totalOrderAmount(orders);
         System.out.println(splitMoneyView(money) + PRICE_UNIT + "\n");
     }
 
