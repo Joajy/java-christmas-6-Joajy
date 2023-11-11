@@ -98,8 +98,9 @@ public class OutputView {
             noBenefits += nothingDiscount(discount);
         }
         if(noBenefits == discounts.size() && money < FREEBIE_MINIMUM_PRICE){
-            System.out.println(NOTHING + "\n");
+            System.out.println(NOTHING);
         }
+        System.out.println();
     }
 
     public static void printBenefit(List<Integer> discounts, int money) {
