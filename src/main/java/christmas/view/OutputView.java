@@ -47,8 +47,8 @@ public class OutputView {
 
     public static void printPayAfterBenefit(int money, int discount) {
         System.out.println(AFTER_DISCOUNT);
-        if(money >= 120000) {
-            discount -= 25000;
+        if(money >= FREEBIE_MINIMUM_PRICE) {
+            discount -= CHAMPAGNE_PRICE;
         }
         System.out.println(splitMoneyView(money - discount) + PRICE_UNIT + "\n");
     }
@@ -59,8 +59,8 @@ public class OutputView {
         for (int discount : discounts) {
             totalBenefits += discount;
         }
-        if(money >= 120000) {
-            totalBenefits += 25000;
+        if(money >= FREEBIE_MINIMUM_PRICE) {
+            totalBenefits += CHAMPAGNE_PRICE;
         }
         if(totalBenefits > 0){
             System.out.print("-");
@@ -85,7 +85,7 @@ public class OutputView {
 
     public static void printFreeMenu(int money){
         System.out.println(FREE_MENU);
-        if(money >= 120000){
+        if(money >= FREEBIE_MINIMUM_PRICE){
             System.out.println(FREE_GIFT);
             return;
         }
@@ -99,7 +99,7 @@ public class OutputView {
         for (int discount : discounts) {
             noBenefits += nothingDiscount(discount);
         }
-        if(noBenefits == discounts.size() && money < 120000){
+        if(noBenefits == discounts.size() && money < FREEBIE_MINIMUM_PRICE){
             System.out.println(NOTHING + "\n");
         }
     }
@@ -121,26 +121,26 @@ public class OutputView {
 
     public static void printChristmasBenefit(int money){
         if(money == 0) return;
-        System.out.println(CHRISTMAS_BENEFIT + "-" + splitMoneyView(money) + PRICE_UNIT);
+        System.out.println(CHRISTMAS_BENEFIT + MINUS_PRICE + splitMoneyView(money) + PRICE_UNIT);
     }
 
     public static void printWeekdayBenefit(int money) {
         if(money == 0) return;
-        System.out.println(WEEKDAY_BENEFIT + "-" + splitMoneyView(money) + PRICE_UNIT);
+        System.out.println(WEEKDAY_BENEFIT + MINUS_PRICE + splitMoneyView(money) + PRICE_UNIT);
     }
 
     public static void printWeekendBenefit(int money) {
         if(money == 0) return;
-        System.out.println(WEEKEND_BENEFIT + "-" + splitMoneyView(money) + PRICE_UNIT);
+        System.out.println(WEEKEND_BENEFIT + MINUS_PRICE + splitMoneyView(money) + PRICE_UNIT);
     }
 
     public static void printSpecialBenefit(int money) {
         if(money == 0) return;
-        System.out.println(SPECIAL_BENEFIT + "-"  + splitMoneyView(money) + PRICE_UNIT);
+        System.out.println(SPECIAL_BENEFIT + MINUS_PRICE + splitMoneyView(money) + PRICE_UNIT);
     }
 
     public static void printFreebieBenefit(int money) {
-        if(money >= 120000){
+        if(money >= FREEBIE_MINIMUM_PRICE){
             System.out.println(FREEBIE_BENEFIT);
         }
     }
