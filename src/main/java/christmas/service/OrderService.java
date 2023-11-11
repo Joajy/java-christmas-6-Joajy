@@ -57,8 +57,8 @@ public class OrderService {
         int weekdayDiscount = 0;
         int weekendDiscount = 0;
         for (Order order : orders) {
-            weekdayDiscount = weekdayDiscount(order, day);
-            weekendDiscount = weekendDiscount(order, day);
+            weekdayDiscount += weekdayDiscount(order, day);
+            weekendDiscount += weekendDiscount(order, day);
         }
         discounts.add(weekdayDiscount);
         discounts.add(weekendDiscount);
