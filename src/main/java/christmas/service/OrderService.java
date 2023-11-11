@@ -51,7 +51,7 @@ public class OrderService {
     }
 
     public static List<Integer> benefits(List<Order> orders) {
-        List<Integer> discounts = new ArrayList();
+        List<Integer> discounts = new ArrayList<>();
         discounts.add(christmasDiscount(day));
         discounts.add(specialDiscount(day));
         int weekdayDiscount = 0;
@@ -66,7 +66,7 @@ public class OrderService {
     }
 
     public static List<Order> separateOrders(String[] input) {
-        List<Order> orders = new ArrayList();
+        List<Order> orders = new ArrayList<>();
 
         for(String order : input) {
             int MenuAmountSeparator = order.lastIndexOf(AMOUNT_DELIMITER);
