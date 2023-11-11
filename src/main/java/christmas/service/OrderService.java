@@ -29,8 +29,8 @@ public class OrderService {
 
     public static List<Order> order() {
         day = readDate();
-        printEventBenefits(day);
         allOfOrderStatus();
+        printEventBenefits(day);
         return orders;
     }
 
