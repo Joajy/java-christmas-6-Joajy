@@ -22,10 +22,10 @@ public class OrderService {
     private static List<Order> orders;
     private static int day;
 
-    private static SpecialDiscount specialDiscount = new SpecialDiscount();
-    private static WeekdayDiscount weekdayDiscount = new WeekdayDiscount();
-    private static ChristmasDDayDiscount christmasDDayDiscount = new ChristmasDDayDiscount();
-    private static WeekendDiscount weekendDiscount = new WeekendDiscount();
+    private static final SpecialDiscount specialDiscount = new SpecialDiscount();
+    private static final WeekdayDiscount weekdayDiscount = new WeekdayDiscount();
+    private static final ChristmasDDayDiscount christmasDDayDiscount = new ChristmasDDayDiscount();
+    private static final WeekendDiscount weekendDiscount = new WeekendDiscount();
 
     public static List<Order> order() {
         day = readDate();
