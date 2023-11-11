@@ -4,6 +4,7 @@ import christmas.domain.Order;
 
 import java.util.List;
 
+import static christmas.service.OrderService.*;
 import static christmas.view.InputView.*;
 
 public class OrderController {
@@ -12,7 +13,6 @@ public class OrderController {
         introduction();
         List<Order> orders = order();
         int money = totalOrderAmount(orders);
-        printBaseStatus(orders);
-        printBenefits(benefits(orders), money);
+        organizeTotalEvent(orders, money);
     }
 }

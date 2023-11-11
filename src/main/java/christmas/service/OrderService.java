@@ -9,6 +9,8 @@ import christmas.domain.menu.MenuList;
 
 import java.util.List;
 
+import static christmas.view.OutputView.*;
+
 public class OrderService {
 
     private static final String AMOUNT_DELIMITER = "-";
@@ -19,6 +21,11 @@ public class OrderService {
     private static WeekdayDiscount weekdayDiscount = new WeekdayDiscount();
     private static ChristmasDDayDiscount christmasDDayDiscount = new ChristmasDDayDiscount();
     private static WeekendDiscount weekendDiscount = new WeekendDiscount();
+
+    public static void organizeTotalEvent(List<Order> orders, int money) {
+        printBaseStatus(orders);
+        printBenefits(benefits(orders), money);
+    }
 
     public static int specialDiscount(int day){
         return specialDiscount.discount(day);
