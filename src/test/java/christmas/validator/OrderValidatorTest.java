@@ -64,18 +64,40 @@ public class OrderValidatorTest {
     }
 
     @Test
-    @DisplayName("메뉴는 1개 이상부터 주문 가능하다")
-    void orderCountMinimumRangeTest() {
+    @DisplayName("단일 주문 수량에서 0개 이하로 주문할 수 없다")
+    void orderMinimumOutOfRangeTest() {
         //given
-        Order order1 = new Order("초코케이크", 0);
 
         //when
-        List<Order> orders = new ArrayList<>();
-        orders.add(order1);
 
         //then
-        assertThatThrownBy(() -> validateOrderCount(orders))
+        assertThatThrownBy(() -> new Order("티본스테이크", 0))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    @DisplayName("단일 주문 수량에서 20개를 넘게 주문할 수 없다")
+    void orderMaximumOutOfRangeTest() {
+        //given
+
+        //when
+
+        //then
+        assertThatThrownBy(() -> new Order("티본스테이크", 22))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+
+
+    @Test
+    @DisplayName("메뉴에 없는 항목을 추가할 경우 문제 발생하는지 확인")
+    void orderNotInMenuTest() {
+        //given
+
+        //when
+
+        //then
+        assertThatThrownBy(() -> new Order("초코", 2))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

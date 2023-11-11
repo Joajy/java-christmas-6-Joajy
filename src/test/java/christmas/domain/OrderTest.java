@@ -12,18 +12,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class OrderTest {
 
     @Test
-    @DisplayName("메뉴에 없는 항목을 추가할 경우 문제 발생하는지 확인")
-    void orderNotInMenuTest() {
-        //given
-
-        //when
-
-        //then
-        assertThatThrownBy(() -> new Order("초코", 2))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
     @DisplayName("하나의 상품에 대한 주문 내역 금액이 제대로 적용되는지 확인")
     void orderPriceTest() {
         //given
