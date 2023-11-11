@@ -65,4 +65,14 @@ public class OrderService {
     public static int christmasDiscount(int day){
         return christmasDDayDiscount.discount(day);
     }
+
+    public static int totalOrderAmount(List<Order> orders){
+        int totalAmount = 0;
+        for (Order order : orders) {
+            String menuName = order.getMenuName();
+            totalAmount += order.getCategory().getPrice(menuName) * order.getOrderAmount();
+        }
+        return totalAmount;
+    }
+
 }
