@@ -16,8 +16,8 @@ public class OrderValidatorTest {
     @DisplayName("음료만 주문하는 경우는 주문을 받지 않는다")
     void orderOnlyBeverageTest() {
         //given
-        Order zeroCola = new Order("제로콜라", 3);
-        Order redWine = new Order("레드와인", 2);
+        Order zeroCola = new Order("제로콜라", "3");
+        Order redWine = new Order("레드와인", "2");
 
         //when
         List<Order> orders = new ArrayList<>();
@@ -33,8 +33,8 @@ public class OrderValidatorTest {
     @DisplayName("주문 사항에 같은 메뉴가 두 번 이상 들어가지 않는다")
     void orderDuplicateTest() {
         //given
-        Order order1 = new Order("초코케이크", 3);
-        Order order2 = new Order("초코케이크", 2);
+        Order order1 = new Order("초코케이크", "3");
+        Order order2 = new Order("초코케이크", "2");
 
         //when
         List<Order> orders = new ArrayList<>();
@@ -50,8 +50,8 @@ public class OrderValidatorTest {
     @DisplayName("메뉴는 최대 20개까지만 주문 가능하다")
     void orderCountMaximumRangeTest() {
         //given
-        Order order1 = new Order("초코케이크", 15);
-        Order order2 = new Order("레드와인", 6);
+        Order order1 = new Order("초코케이크", "15");
+        Order order2 = new Order("레드와인", "6");
 
         //when
         List<Order> orders = new ArrayList<>();
@@ -71,7 +71,7 @@ public class OrderValidatorTest {
         //when
 
         //then
-        assertThatThrownBy(() -> new Order("티본스테이크", 0))
+        assertThatThrownBy(() -> new Order("티본스테이크", "0"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -83,7 +83,7 @@ public class OrderValidatorTest {
         //when
 
         //then
-        assertThatThrownBy(() -> new Order("티본스테이크", 22))
+        assertThatThrownBy(() -> new Order("티본스테이크", "22"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -97,7 +97,7 @@ public class OrderValidatorTest {
         //when
 
         //then
-        assertThatThrownBy(() -> new Order("초코", 2))
+        assertThatThrownBy(() -> new Order("초코", "2"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
