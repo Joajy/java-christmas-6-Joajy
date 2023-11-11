@@ -6,10 +6,13 @@ import christmas.domain.discount.SpecialDiscount;
 import christmas.domain.discount.WeekdayDiscount;
 import christmas.domain.discount.WeekendDiscount;
 import christmas.domain.menu.MenuList;
+import christmas.util.InputConstant;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static christmas.validator.OrderValidator.validateOrderStatus;
+import static christmas.view.InputView.*;
 import static christmas.view.OutputView.*;
 
 public class OrderService {
@@ -23,6 +26,24 @@ public class OrderService {
     private static WeekdayDiscount weekdayDiscount = new WeekdayDiscount();
     private static ChristmasDDayDiscount christmasDDayDiscount = new ChristmasDDayDiscount();
     private static WeekendDiscount weekendDiscount = new WeekendDiscount();
+
+    public static List<Order> order() {
+        day = readDate();
+        printEventBenefits(day);
+        allOfOrderStatus();
+        return orders;
+    }
+
+    public static void allOfOrderStatus(){
+        try {
+            String[] order = orderMenuWithAmount();
+            orders = separateOrders(order);
+            validateOrderStatus(orders);
+        } catch (IllegalArgumentException e) {
+            System.out.println(InputConstant.INVALID_ORDER);
+            allOfOrderStatus();
+        }
+    }
 
     public static void organizeTotalEvent(List<Order> orders, int money) {
         printBaseStatus(orders);
@@ -42,6 +63,19 @@ public class OrderService {
         discounts.add(weekdayDiscount);
         discounts.add(weekendDiscount);
         return discounts;
+    }
+
+    public static List<Order> separateOrders(String[] input) {
+        List<Order> orders = new ArrayList();
+
+        for(String order : input) {
+            int MenuAmountSeparator = order.lastIndexOf(AMOUNT_DELIMITER);
+            String menuName = order.substring(0, MenuAmountSeparator);
+            String orderAmount = order.substring(MenuAmountSeparator + 1);
+            orders.add(new Order(menuName, orderAmount));
+        }
+
+        return orders;
     }
 
     public static int specialDiscount(int day){
