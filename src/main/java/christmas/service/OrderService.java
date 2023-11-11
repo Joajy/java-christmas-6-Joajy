@@ -9,6 +9,7 @@ import christmas.domain.menu.MenuList;
 import christmas.util.InputConstant;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static christmas.validator.OrdersValidator.validateOrdersStatus;
@@ -18,6 +19,7 @@ import static christmas.view.OutputView.*;
 public class OrderService {
 
     private static final String AMOUNT_DELIMITER = "-";
+    private static final int MINIMUM_PRICE_TO_ORDER = 10000;
 
     private static List<Order> orders;
     private static int day;
@@ -47,7 +49,14 @@ public class OrderService {
 
     public static void organizeTotalEvent(List<Order> orders, int money) {
         printBaseStatus(orders, money);
-        printBenefits(benefits(orders), money);
+        List<Integer> benefits = benefits(orders);
+        applyOrderPriceCondition(benefits, money);
+        printBenefits(benefits, money);
+    }
+
+    public static void applyOrderPriceCondition(List<Integer> benefits, int money) {
+        if(money >= MINIMUM_PRICE_TO_ORDER) return;
+        Collections.fill(benefits, 0);
     }
 
     public static List<Integer> benefits(List<Order> orders) {
