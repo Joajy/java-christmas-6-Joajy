@@ -20,6 +20,55 @@ public class OutputView {
         printBeforeDiscount(orders);
     }
 
+    public static void printBenefits(List<Integer> benefits, int money){
+        printFreeMenu(money);
+        printBenefitsHistory(benefits, money);
+        int discount = printTotalBenefits(benefits, money);
+        printPayAfterBenefit(money, discount);
+        printEventBadge(discount);
+    }
+
+    public static void printEventBadge(int discount) {
+        System.out.println(EVENT_BADGE);
+        if (discount >= VVIP_PRICE) {
+            System.out.println(VVIP_BADGE);
+            return;
+        }
+        if (discount >= VIP_PRICE) {
+            System.out.println(VIP_BADGE);
+            return;
+        }
+        if (discount >= NORMAL_PRICE) {
+            System.out.println(NORMAL_BADGE);
+            return;
+        }
+        System.out.println(NOTHING);
+    }
+
+    public static void printPayAfterBenefit(int money, int discount) {
+        System.out.println(AFTER_DISCOUNT);
+        if(money >= 120000) {
+            discount -= 25000;
+        }
+        System.out.println(splitMoneyView(money - discount) + PRICE_UNIT + "\n");
+    }
+
+    public static int printTotalBenefits(List<Integer> discounts, int money){
+        System.out.println(DISCOUNT_BENEFIT);
+        int totalBenefits = 0;
+        for (int discount : discounts) {
+            totalBenefits += discount;
+        }
+        if(money >= 120000) {
+            totalBenefits += 25000;
+        }
+        if(totalBenefits > 0){
+            System.out.print("-");
+        }
+        System.out.println(splitMoneyView(totalBenefits) + PRICE_UNIT + "\n");
+        return totalBenefits;
+    }
+
     public static void printMenu(List<Order> orders) {
         System.out.println(ORDER_MENU);
         for (Order order : orders) {
@@ -34,12 +83,40 @@ public class OutputView {
         System.out.println(splitMoneyView(money) + PRICE_UNIT + "\n");
     }
 
+    public static void printFreeMenu(int money){
+        System.out.println(FREE_MENU);
+        if(money >= 120000){
+            System.out.println(FREE_GIFT);
+            return;
+        }
+        System.out.println(NOTHING + "\n");
+    }
+
+    public static void printBenefitsHistory(List<Integer> discounts, int money) {
+        System.out.println(BENEFITS_HISTORY);
+        printBenefit(discounts, money);
+        int noBenefits = 0;
+        for (int discount : discounts) {
+            noBenefits += nothingDiscount(discount);
+        }
+        if(noBenefits == discounts.size() && money < 120000){
+            System.out.println(NOTHING + "\n");
+        }
+    }
+
     public static void printBenefit(List<Integer> discounts, int money) {
         printChristmasBenefit(discounts.get(0));
         printSpecialBenefit(discounts.get(1));
         printWeekdayBenefit(discounts.get(2));
         printWeekendBenefit(discounts.get(3));
         printFreebieBenefit(money);
+    }
+
+    public static int nothingDiscount(int discount){
+        if(discount == 0){
+            return 1;
+        }
+        return 0;
     }
 
     public static void printChristmasBenefit(int money){
