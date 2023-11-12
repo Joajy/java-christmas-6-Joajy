@@ -9,12 +9,12 @@ import christmas.domain.menu.MenuList;
 import christmas.util.InputConstant;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import static christmas.validator.OrdersValidator.validateOrdersStatus;
 import static christmas.view.InputView.*;
 import static christmas.view.OutputView.*;
+import static java.util.Collections.*;
 
 public class OrderService {
 
@@ -56,22 +56,32 @@ public class OrderService {
 
     public static void applyOrderPriceCondition(List<Integer> benefits, int money) {
         if(money >= MINIMUM_PRICE_TO_ORDER) return;
-        Collections.fill(benefits, 0);
+        fill(benefits, 0);
     }
 
     public static List<Integer> benefits(List<Order> orders) {
         List<Integer> discounts = new ArrayList<>();
         discounts.add(christmasDiscount(day));
         discounts.add(specialDiscount(day));
+        discounts.add(weekdayDiscount(orders));
+        discounts.add(weekendDiscount(orders));
+        return discounts;
+    }
+
+    public static int weekdayDiscount(List<Order> orders) {
         int weekdayDiscount = 0;
-        int weekendDiscount = 0;
         for (Order order : orders) {
             weekdayDiscount += weekdayDiscount(order, day);
+        }
+        return weekdayDiscount;
+    }
+
+    public static int weekendDiscount(List<Order> orders) {
+        int weekendDiscount = 0;
+        for (Order order : orders) {
             weekendDiscount += weekendDiscount(order, day);
         }
-        discounts.add(weekdayDiscount);
-        discounts.add(weekendDiscount);
-        return discounts;
+        return weekendDiscount;
     }
 
     public static List<Order> separateOrders(String[] input) {
