@@ -19,7 +19,7 @@ import static java.util.Collections.*;
 public class OrderService {
 
     private static final String AMOUNT_DELIMITER = "-";
-    private static final int MINIMUM_PRICE_TO_ORDER = 10000;
+    private static final int MINIMUM_PRICE_TO_EVENT = 10000;
 
     private static List<Order> orders;
     private static int day;
@@ -50,12 +50,12 @@ public class OrderService {
     public static void organizeTotalEvent(List<Order> orders, int money) {
         printBaseStatus(orders, money);
         List<Integer> benefits = benefits(orders);
-        applyOrderPriceCondition(benefits, money);
+        eventPossibleOverCertainPrice(benefits, money);
         printBenefits(benefits, money);
     }
 
-    public static void applyOrderPriceCondition(List<Integer> benefits, int money) {
-        if(money >= MINIMUM_PRICE_TO_ORDER) return;
+    public static void eventPossibleOverCertainPrice(List<Integer> benefits, int money) {
+        if(money >= MINIMUM_PRICE_TO_EVENT) return;
         fill(benefits, 0);
     }
 
