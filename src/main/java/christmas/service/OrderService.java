@@ -11,6 +11,8 @@ import christmas.util.InputConstant;
 import java.util.ArrayList;
 import java.util.List;
 
+import static christmas.util.OutputConstant.CHAMPAGNE_PRICE;
+import static christmas.util.OutputConstant.FREEBIE_MINIMUM_PRICE;
 import static christmas.validator.OrdersValidator.validateOrdersStatus;
 import static christmas.view.InputView.*;
 import static christmas.view.OutputView.*;
@@ -126,6 +128,22 @@ public class OrderService {
             totalAmount += order.getCategory().getPrice(menuName) * order.getOrderAmount();
         }
         return totalAmount;
+    }
+
+    public static int totalBenefits(List<Integer> discounts, int money) {
+        int totalBenefits = 0;
+        for (int discount : discounts) {
+            totalBenefits += discount;
+        }
+        totalBenefits += canGetFreeChampagne(money);
+        return totalBenefits;
+    }
+
+    public static int canGetFreeChampagne(int money) {
+        if(money >= FREEBIE_MINIMUM_PRICE) {
+            return -CHAMPAGNE_PRICE;
+        }
+        return 0;
     }
 
 }

@@ -5,6 +5,7 @@ import christmas.domain.Order;
 import java.text.DecimalFormat;
 import java.util.List;
 
+import static christmas.service.OrderService.*;
 import static christmas.util.OutputConstant.*;
 
 public class OutputView {
@@ -46,21 +47,13 @@ public class OutputView {
 
     public static void printPayAfterBenefit(int money, int discount) {
         System.out.println(AFTER_DISCOUNT);
-        if(money >= FREEBIE_MINIMUM_PRICE) {
-            discount -= CHAMPAGNE_PRICE;
-        }
+        discount += canGetFreeChampagne(money);
         System.out.println(splitMoneyView(money - discount) + PRICE_UNIT + "\n");
     }
 
     public static int printTotalBenefits(List<Integer> discounts, int money){
         System.out.println(DISCOUNT_BENEFIT);
-        int totalBenefits = 0;
-        for (int discount : discounts) {
-            totalBenefits += discount;
-        }
-        if(money >= FREEBIE_MINIMUM_PRICE) {
-            totalBenefits -= CHAMPAGNE_PRICE;
-        }
+        int totalBenefits = totalBenefits(discounts, money);
         System.out.println(splitMoneyView(totalBenefits) + PRICE_UNIT + "\n");
         return totalBenefits;
     }
@@ -95,8 +88,9 @@ public class OutputView {
             noBenefits += nothingDiscount(discount);
         }
         if(noBenefits == discounts.size() && money < FREEBIE_MINIMUM_PRICE){
-            System.out.println(NOTHING + "\n");
+            System.out.println(NOTHING);
         }
+        System.out.println();
     }
 
     public static void printBenefit(List<Integer> discounts, int money) {
