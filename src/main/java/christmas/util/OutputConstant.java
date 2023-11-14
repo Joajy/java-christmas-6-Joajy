@@ -11,7 +11,7 @@ public class OutputConstant {
     public static final String WEEKDAY_BENEFIT = "평일 할인: ";
     public static final String WEEKEND_BENEFIT = "주말 할인: ";
     public static final String SPECIAL_BENEFIT = "특별 할인: ";
-    public static final String FREEBIE_BENEFIT = "증정 이벤트: -25,000원\n";
+    public static final String FREEBIE_BENEFIT = "증정 이벤트: -";
     public static final String DISCOUNT_BENEFIT = "<총혜택 금액>";
     public static final String AFTER_DISCOUNT = "<할인 후 예상 결제 금액>";
     public static final String EVENT_BADGE = "<12월 이벤트 배지>";

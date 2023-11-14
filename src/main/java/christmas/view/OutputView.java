@@ -135,9 +135,8 @@ public class OutputView {
     }
 
     public static void printFreebieBenefit(int money) {
-        if(money >= FREEBIE_MINIMUM_PRICE){
-            System.out.println(FREEBIE_BENEFIT);
-        }
+        if(money < FREEBIE_MINIMUM_PRICE) return;
+        System.out.println(FREEBIE_BENEFIT + splitMoneyView(CHAMPAGNE_PRICE) + PRICE_UNIT);
     }
 
 }
