@@ -5,14 +5,10 @@ public enum Appetizer implements Menu{
     타파스("타파스", 5500, 0),
     시저샐러드("시저샐러드", 8000, 0);
 
-    private final String menuName;
     private final int price;
-    private final int order;
 
     Appetizer(String menuName, int price, int order) {
-        this.menuName = menuName;
         this.price = price;
-        this.order = order;
     }
 
     @Override

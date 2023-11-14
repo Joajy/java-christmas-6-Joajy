@@ -6,14 +6,10 @@ public enum Main implements Menu{
     해산물파스타("해산물파스타", 35000, 0),
     크리스마스파스타("크리스마스파스타", 25000, 0);
 
-    private final String menuName;
     private final int price;
-    private final int order;
 
     Main(String menuName, int price, int order) {
-        this.menuName = menuName;
         this.price = price;
-        this.order = order;
     }
 
     @Override
