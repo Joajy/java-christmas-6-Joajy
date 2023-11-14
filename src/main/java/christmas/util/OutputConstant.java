@@ -23,7 +23,6 @@ public class OutputConstant {
     public static final int VVIP_PRICE = 20000;
     public static final int VIP_PRICE = 10000;
     public static final int NORMAL_PRICE = 5000;
-    public static final String MINUS_PRICE = "-";
     public static final int FREEBIE_MINIMUM_PRICE = 120000;
     public static final int CHAMPAGNE_PRICE = 25000;
 

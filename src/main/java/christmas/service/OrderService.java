@@ -61,10 +61,10 @@ public class OrderService {
 
     public static List<Integer> benefits(List<Order> orders) {
         List<Integer> discounts = new ArrayList<>();
-        discounts.add(christmasDiscount(day));
-        discounts.add(specialDiscount(day));
-        discounts.add(weekdayDiscount(orders));
-        discounts.add(weekendDiscount(orders));
+        discounts.add(-christmasDiscount(day));
+        discounts.add(-specialDiscount(day));
+        discounts.add(-weekdayDiscount(orders));
+        discounts.add(-weekendDiscount(orders));
         return discounts;
     }
 
