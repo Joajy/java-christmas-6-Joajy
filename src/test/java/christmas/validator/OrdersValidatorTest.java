@@ -88,7 +88,6 @@ public class OrdersValidatorTest {
     }
 
 
-
     @Test
     @DisplayName("메뉴에 없는 항목을 추가할 경우 문제 발생하는지 확인")
     void orderNotInMenuTest() {
@@ -98,6 +97,18 @@ public class OrdersValidatorTest {
 
         //then
         assertThatThrownBy(() -> new Order("초코", "2"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("주문 항목에 아무것도 대입되지 않았는지 확인")
+    void orderIsEmptyTest(){
+        //given
+
+        //when
+
+        //then
+        assertThatThrownBy(() -> validateEmptyInput(""))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

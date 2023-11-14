@@ -1,8 +1,8 @@
 package christmas.view;
 
-import camp.nextstep.edu.missionutils.Console;
-
+import static camp.nextstep.edu.missionutils.Console.*;
 import static christmas.util.InputConstant.*;
+import static christmas.validator.OrdersValidator.*;
 import static christmas.validator.VisitDayValidator.validateDay;
 
 public class InputView {
@@ -14,7 +14,7 @@ public class InputView {
     public static int readDate() {
         System.out.println(EXPECTED_VISIT_DATE);
         try {
-            String input = Console.readLine();
+            String input = readLine();
             validateDay(input);
             return Integer.parseInt(input);
         } catch (IllegalArgumentException e) {
@@ -26,7 +26,8 @@ public class InputView {
     public static String[] orderMenuWithAmount() {
         try {
             System.out.println(ORDER_MENU_WITH_AMOUNT);
-            String input = Console.readLine();
+            String input = readLine();
+            validateEmptyInput(input);
             return input.split(MENU_DELIMITER);
         } catch (IllegalArgumentException e) {
             System.out.println(INVALID_ORDER);

@@ -5,8 +5,15 @@ public class VisitDayValidator {
     private static final String REGEX = "^[0-9]+$";
 
     public static void validateDay(String day) {
+        validateDateIsEmpty(day);
         validateNumber(day);
         validateOutOfRange(day);
+    }
+
+    public static void validateDateIsEmpty(String day){
+        if (day.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public static void validateOutOfRange(String day) {

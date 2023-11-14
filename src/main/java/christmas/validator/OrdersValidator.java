@@ -53,4 +53,10 @@ public class OrdersValidator {
             throw new IllegalArgumentException();
         }
     }
+
+    public static void validateEmptyInput(String input) {
+        if (input.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
+    }
 }

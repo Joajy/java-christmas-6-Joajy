@@ -10,7 +10,7 @@ public class VisitDayValidatorTest {
 
     @Test
     @DisplayName("날짜 입력은 숫자로만 입력받아야 한다")
-    void inputOnlyNumberTest(){
+    void inputOnlyNumberTest() {
         //given
         String day = "1일";
 
@@ -23,7 +23,7 @@ public class VisitDayValidatorTest {
 
     @Test
     @DisplayName("날짜 입력은 1 이상 31 이하의 값만 입력받아야 한다")
-    void inputDateOutOfRangeTest(){
+    void inputDateOutOfRangeTest() {
         //given
         String day = "33";
 
@@ -34,5 +34,15 @@ public class VisitDayValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    @DisplayName("날짜에 아무것도 대입되지 않았는지 확인")
+    void dateIsEmptyTest(){
+        //given
 
+        //when
+
+        //then
+        assertThatThrownBy(() -> validateDateIsEmpty(""))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
