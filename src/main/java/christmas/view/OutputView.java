@@ -78,15 +78,16 @@ public class OutputView {
         System.out.println(BENEFITS_HISTORY);
         printBenefit(discounts, money);
 
-        int noBenefits = 0;
-        for (int discount : discounts) {
-            noBenefits += nothingDiscount(discount);
-        }
-        if(noBenefits == discounts.size() && money < FREEBIE_MINIMUM_PRICE){
+        if(hasNoBenefits(discounts) && money < FREEBIE_MINIMUM_PRICE){
             System.out.println(NOTHING);
         }
 
         System.out.println();
+    }
+
+    public static boolean hasNoBenefits(List<Integer> discounts) {
+        //모두 같은 값이며, 그 값이 0인 경우
+        return discounts.stream().distinct().count() == 1 && discounts.get(0) == 0;
     }
 
     public static void printBenefit(List<Integer> discounts, int money) {
@@ -95,13 +96,6 @@ public class OutputView {
         printWeekdayBenefit(discounts.get(2));
         printWeekendBenefit(discounts.get(3));
         printFreebieBenefit(money);
-    }
-
-    public static int nothingDiscount(int discount){
-        if(discount == 0){
-            return 1;
-        }
-        return 0;
     }
 
     public static void printChristmasBenefit(int money){
