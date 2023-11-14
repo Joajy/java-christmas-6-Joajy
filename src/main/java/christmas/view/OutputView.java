@@ -5,6 +5,7 @@ import christmas.domain.Order;
 import java.text.DecimalFormat;
 import java.util.List;
 
+import static christmas.domain.EventBadge.*;
 import static christmas.service.OrderService.*;
 import static christmas.util.OutputConstant.*;
 
@@ -23,6 +24,7 @@ public class OutputView {
     public static void printBenefits(List<Integer> benefits, int money){
         printFreeMenu(money);
         printBenefitsHistory(benefits, money);
+
         int discount = -printTotalBenefits(benefits, money);
         printPayAfterBenefit(money, discount);
         printEventBadge(discount);
@@ -30,19 +32,7 @@ public class OutputView {
 
     public static void printEventBadge(int discount) {
         System.out.println(EVENT_BADGE);
-        if (discount >= VVIP_PRICE) {
-            System.out.println(VVIP_BADGE);
-            return;
-        }
-        if (discount >= VIP_PRICE) {
-            System.out.println(VIP_BADGE);
-            return;
-        }
-        if (discount >= NORMAL_PRICE) {
-            System.out.println(NORMAL_BADGE);
-            return;
-        }
-        System.out.println(NOTHING);
+        System.out.println(getEventBadge(discount));
     }
 
     public static void printPayAfterBenefit(int money, int discount) {
@@ -60,9 +50,11 @@ public class OutputView {
 
     public static void printMenu(List<Order> orders) {
         System.out.println(ORDER_MENU);
+
         for (Order order : orders) {
             System.out.println(order.getMenuName() + " " + order.getOrderAmount() + "개");
         }
+
         System.out.println();
     }
 
@@ -73,16 +65,19 @@ public class OutputView {
 
     public static void printFreeMenu(int money){
         System.out.println(FREE_MENU);
+
         if(money >= FREEBIE_MINIMUM_PRICE){
             System.out.println(FREE_GIFT);
             return;
         }
+
         System.out.println(NOTHING + "\n");
     }
 
     public static void printBenefitsHistory(List<Integer> discounts, int money) {
         System.out.println(BENEFITS_HISTORY);
         printBenefit(discounts, money);
+
         int noBenefits = 0;
         for (int discount : discounts) {
             noBenefits += nothingDiscount(discount);
@@ -90,6 +85,7 @@ public class OutputView {
         if(noBenefits == discounts.size() && money < FREEBIE_MINIMUM_PRICE){
             System.out.println(NOTHING);
         }
+
         System.out.println();
     }
 
