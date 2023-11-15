@@ -13,7 +13,7 @@ import java.util.List;
 
 import static christmas.util.OutputConstant.CHAMPAGNE_PRICE;
 import static christmas.util.OutputConstant.FREEBIE_MINIMUM_PRICE;
-import static christmas.validator.OrdersValidator.validateOrdersStatus;
+import static christmas.validator.OrdersValidator.*;
 import static christmas.view.InputView.*;
 import static christmas.view.OutputView.*;
 import static java.util.Collections.*;
@@ -42,7 +42,6 @@ public class OrderService {
         try {
             String[] order = orderMenuWithAmount();
             orders = separateOrders(order);
-            validateOrdersStatus(orders);
         } catch (IllegalArgumentException e) {
             System.out.println(InputConstant.INVALID_ORDER);
             allOfOrderStatus();
@@ -90,12 +89,13 @@ public class OrderService {
         List<Order> orders = new ArrayList<>();
 
         for(String order : input) {
-            int MenuAmountSeparator = order.lastIndexOf(AMOUNT_DELIMITER);
-            String menuName = order.substring(0, MenuAmountSeparator);
-            String orderAmount = order.substring(MenuAmountSeparator + 1);
+            int menuAmountSeparator = order.indexOf(AMOUNT_DELIMITER);
+            validateOrderHasNotDelimiter(menuAmountSeparator);
+            String menuName = order.substring(0, menuAmountSeparator);
+            String orderAmount = order.substring(menuAmountSeparator + 1);
             orders.add(new Order(menuName, orderAmount));
         }
-
+        validateOrdersStatus(orders);
         return orders;
     }
 

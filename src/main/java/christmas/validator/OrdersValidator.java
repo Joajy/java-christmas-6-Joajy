@@ -59,4 +59,10 @@ public class OrdersValidator {
             throw new IllegalArgumentException();
         }
     }
+
+    public static void validateOrderHasNotDelimiter(int menuAmountSeparator) {
+        if (menuAmountSeparator == -1) {
+            throw new IllegalArgumentException();
+        }
+    }
 }
