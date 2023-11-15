@@ -20,6 +20,7 @@ public class OutputConstant {
     public static final String VIP_BADGE = "트리";
     public static final String NORMAL_BADGE = "별";
     public static final String NOTHING = "없음";
+    public static final String COUNT_ORDER = "개";
     public static final int VVIP_PRICE = 20000;
     public static final int VIP_PRICE = 10000;
     public static final int NORMAL_PRICE = 5000;

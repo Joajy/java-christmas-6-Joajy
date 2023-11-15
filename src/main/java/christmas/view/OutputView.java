@@ -52,7 +52,7 @@ public class OutputView {
         System.out.println(ORDER_MENU);
 
         for (Order order : orders) {
-            System.out.println(order.getMenuName() + " " + order.getOrderAmount() + "개");
+            System.out.println(order.getMenuName() + " " + order.getOrderAmount() + COUNT_ORDER);
         }
 
         System.out.println();
