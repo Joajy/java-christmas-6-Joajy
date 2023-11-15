@@ -1,12 +1,7 @@
 package christmas.domain;
 
-import christmas.domain.menu.Main;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
-
-import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class OrderTest {
@@ -20,20 +15,7 @@ public class OrderTest {
         //when
 
         //then
-        assertEquals(order.getOrderAmount() * order.getCategory().getPrice(order.getMenuName()), 110000);
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"티본스테이크", "해산물파스타"})
-    @DisplayName("주문 상품이 알맞은 카테고리를 가지고 있는지 확인")
-    void orderCategoryTest(String menu) {
-        //given
-        Order order = new Order(menu, "2");
-
-        //when
-
-        //then
-        assertThat(order.getCategory()).isInstanceOf(Main.class);
+        assertEquals(order.menuTotalPrice(), 110000);
     }
 
     @Test

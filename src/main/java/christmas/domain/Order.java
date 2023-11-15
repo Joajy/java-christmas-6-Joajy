@@ -21,8 +21,8 @@ public class Order {
         this.orderAmount = validateOrderAmount(orderAmount);
     }
 
-    public Menu getCategory(){
-        return category;
+    public int menuTotalPrice(){
+        return category.getPrice(menuName) * orderAmount;
     }
 
     public int validateOrderAmount(String orderAmount){
