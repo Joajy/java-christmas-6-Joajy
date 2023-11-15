@@ -87,6 +87,21 @@ public class OrdersValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    @DisplayName("총 주문 수량이 20개를 넘을 수 없다")
+    void ordersMaximumOutOfRangeTest() {
+        //given
+        List<Order> orders = new ArrayList<>();
+
+        //when
+        orders.add(new Order("티본스테이크", "5"));
+        orders.add(new Order("초코케이크", "10"));
+        orders.add(new Order("제로콜라", "10"));
+
+        //then
+        assertThatThrownBy(() -> validateOrdersCount(orders))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 
     @Test
     @DisplayName("메뉴에 없는 항목을 추가할 경우 문제 발생하는지 확인")
